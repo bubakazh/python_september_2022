@@ -37,6 +37,24 @@ class User:
             print('You do not have enough gold card points.')
         return self
 
+    def make_deposit(self, amount):
+        self.account.deposit(amount)
+        return self
+
+    def make_withdrawal(self, amount):
+        self.account.withdraw(amount)
+        return self
+
+    def display_user_balance(self):
+        self.account.display_account_info()
+        return self
+    
+    def transfer_money(self, amount, other_user):
+        self.account.withdraw(amount)
+        print ('Money has been transferred to ' + str(other_user) + '.') # How do i get this to print the class instance name instead of the location?
+        other_user.account.deposit(amount)
+        return self
+
 first_user = User('Troy', 'M.', 'tm@g', 33)
 
 first_user.display_info()
@@ -62,4 +80,8 @@ third_user.display_info()
 
 # first_user.display_info().enroll().enroll().spend_points(199).display_info()
 
-# def user_deposit
+first_user.make_deposit(100).display_user_balance()
+second_user.display_user_balance()
+third_user.make_withdrawal(100).display_user_balance()
+first_user.transfer_money(1000, second_user).display_user_balance()
+second_user.display_user_balance()
