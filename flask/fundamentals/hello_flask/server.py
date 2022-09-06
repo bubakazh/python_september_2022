@@ -22,5 +22,10 @@ def show_user_profile(username, id):
     print(id)
     return "username: " + username + ", id: " + id
 
+@app.route('/repeat/<int:num>/<thing>')
+def repeat_the_string(num, thing):
+    print(f'{thing * int(num)}    ')
+    return f'{thing * int(num)}    '
+
 if __name__=="__main__":   # Ensure this file is being run directly and not from a different module    
     app.run(debug=True)    # Run the app in debug mode.
