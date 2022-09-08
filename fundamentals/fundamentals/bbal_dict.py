@@ -62,6 +62,7 @@ class Player:
             # print(Player(player))
             my_team.append(Player(player))
         print(my_team)
+        return my_team
 
 Player.make_team(players)
 
