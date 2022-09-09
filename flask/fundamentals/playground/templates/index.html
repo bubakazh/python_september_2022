@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playground</title>
+    <!-- <link rel="stylesheet" href="../static/bootstrap.css"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <!-- CSS IN-LINE STYLING IS DONE IN THE HEAD, USING "style" -->
+    <style>
+        .container{
+            width: 960px;
+        }
+        h1{
+            text-align: center;
+        }
+        h4{
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .playground{
+            display: flex;
+            justify-content: space-evenly;
+            /* flex-direction: column; */
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            border: solid black 3px;
+            margin: 15px;
+            background-color: {{color}};
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>グラウンドへようこそ！</h1>
+        <h4>(Welcome to the playground!)</h4>
+        <div class="playground">
+            {% for x in range(0,num) %}
+            <div class="box"></div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
