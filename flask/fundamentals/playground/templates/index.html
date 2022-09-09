@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playground</title>
     <!-- <link rel="stylesheet" href="../static/bootstrap.css"> -->
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}"> <!--BOOTSTRAP WAS BREAKING WITH THE THIRD APP ROUTE. PROPERLY LINKING FIXED THE ISSUE-->
     <!-- CSS IN-LINE STYLING IS DONE IN THE HEAD, USING "style" -->
     <style>
         .container{
