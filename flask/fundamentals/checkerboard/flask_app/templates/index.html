@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Checkerboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}"> 
+    <style>
+        .container{
+            display: flex;
+            /* justify-content: center; */
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+        }
+        .square1{
+            background-color: {{color1}};
+        }
+        .square2{
+            background-color: {{color2}};
+        }
+        table tr td{
+            height: 50px;
+            width: 50px;
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            margin-top: 32px;
+        }
+        .message{
+            color: {{color2}};
+            background-color: {{color1}};
+            padding: 15px 45px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class = "message">Checkerboard</h1>
+        <div class="main">
+            <div class="board">
+                <table>
+                    {% for i in range(num) %}
+                    <tr>
+                        {% for j in range(numb) %}
+                        <td class = 'square{{(i + j) % 2 + 1}}'></td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
