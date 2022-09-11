@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .main{
+            margin-top: 32px;
+        }
+        .DIY{
+            margin-top: 32px;
+        }
+        .rectangle{
+            width: 32px;
+            color: lightgrey;
+        }
+        .numbah{
+            font-size: 49px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{session}}
+        <h1>カウンター</h1>
+        <h6>(Counter)</h6>
+        <h2>もう <span class = "numbah"> {{session.count}} </span>回きてるよ、ここに。。。</h2>
+        <h6>({{session.count}} times visited here...)</h6>
+        <div class="main">
+            <a class = "btn btn-primary" href="/plus_one">Add a visit</a>
+            <a class = "btn btn-success" href="/plus_two">Add two visits</a>
+            <a class = "btn btn-danger" href="/destroy_session">Reset</a>
+            <form class = "DIY" action="/plus_choice" method = 'post'>
+                <!--I know there's a better way to format this... XD-->
+                <label for='name'>Add fake visits to the counter:</label> 
+                <input class = "rectangle" type="text" name = "key"> 
+                <input type="submit" value = 'Submit'>
+                <!--the form is not functional...yet...-->
+            </form>
+        </div>
+    </div>
+</body>
+</html>
