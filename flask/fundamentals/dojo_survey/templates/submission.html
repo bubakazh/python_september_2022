@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Info</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <style>
+        .container{
+            padding-top: 32px;
+            display: flex;
+            justify-content: center;
+        }
+        .main{
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            background-color: rgb(155, 245, 182);
+            width: 400px;
+        }
+        #backup{
+            width: 69px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1>Submission</h1>
+            <p>Name:                {{session.name}}</p>
+            <p>Dojo location:       {{session.dojo}}</p>
+            <p>Fav coding language: {{session.language}}</p>
+            <p>Comment:             {{session.comment}}</p>
+            <a class = "backup btn btn-primary" id="backup" href="/">HOME</a>
+        </div>
+    </div>
+</body>
+</html>

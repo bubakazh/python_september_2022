@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <title>Dojo Survey</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 32px;
+        }
+        .fillItIn{
+            width: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 15px;
+        }
+        h1{
+            color: rgb(155, 245, 182);;
+        }
+        .main{
+            background-color: gray;
+            padding: 50px;
+        }
+        input{
+            margin-bottom: 25px;
+        }
+        .dropDown{
+            margin-bottom: 25px;
+        }
+        textarea{
+            margin-bottom: 25px;
+        }
+        .submitted{
+            width: 99px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <h1>Dojo Survey</h1>
+            <form class = "fillItIn" action="/process", method ="post">
+                <input type = "hidden" name = "id" value = "1">
+                <label for="Your name">Your name:</label>
+                <input type="text" name="ninja_name" id = "">
+                <label for="Dojo location">Dojo location:</label>
+                <select class = "dropDown" name="dojo" id="">
+                    <option value="" disabled selected hidden> -- Select a location --</option>
+                    <option value="Burbank">Burbank</option>
+                    <option value="San Jose">San Jose</option>
+                    <option value="東京">東京</option>
+                    <option value="京都">京都</option>
+                    <option value="大阪">大阪</option>
+                    <option value="Online">Online</option>
+                </select>
+                <label for="Favorite coding language">Favorite coding language:</label>
+                <select class = "dropDown" name="language" id="">
+                    <option value="" disabled selected hidden> -- Select a language --</option>
+                    <option value="C++">C++</option>
+                    <option value="C#">C#</option>
+                    <option value="HTML/CSS">HTML/CSS</option>
+                    <option value="Java">Java</option>
+                    <option value="Javascript">Javascript</option>
+                    <option value="Node.js">Node.js</option>
+                    <option value="Python">Python</option>
+                    <option value="ReactJs">ReactJs</option>
+                    <option value="Ruby">Ruby on Rails</option>
+                    <option value="SQL">SQL</option>
+                </select>
+                <label for="Comment">Comment:</label>
+                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                <input class = "submitted btn btn-primary" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
