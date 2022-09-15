@@ -22,7 +22,7 @@ class User:
         users = []
         # Iterate over the db results and create instances of users with cls.
         for user in results:
-            users.append( cls(user) )
+            users.append(cls(user))
         return users
 
     # ! READ ONE
@@ -39,7 +39,7 @@ class User:
     # ! CREATE
     # class method to save our user to the database
     @classmethod
-    def save(cls, data ):
+    def save(cls, data):
         query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s, NOW() , NOW() );"
         # data is a dictionary that will be passed into the save method from server.py
         return connectToMySQL('users').query_db( query, data )

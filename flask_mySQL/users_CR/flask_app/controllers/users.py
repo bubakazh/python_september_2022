@@ -30,7 +30,8 @@ def edit(id):
 @app.route("/edit_user", methods=["POST"])
 def edit_user():
     User.update(request.form)
-    return redirect('/users') # TODO CHANGE THIS REDIRECT TO SHOW THE USER THAT WAS EDITED, NOT ALL USERS.
+    return redirect('/users') # TODO CHANGE THIS REDIRECT TO SHOW THE USER THAT WAS EDITED, NOT ALL USERS. SEE NINJAS CONTROLLER FROM DOJOS AND NINJAS FOR SYNTAX
+    # return redirect(f"/show/{request.form['id']}") I THINK THIS IS IT. MAYBE TEST LATER?
 
 # ! CREATE
 # THIS IS THE ROUTE THAT DISPLAYS THE FORM FOR ADDING A NEW USER
