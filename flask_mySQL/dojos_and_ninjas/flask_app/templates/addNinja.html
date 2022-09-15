@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
+    <title>Add Ninja</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px;
+        }
+        .addNinja{
+            width: 320px;
+            padding: 32px;
+            background-color: midnightblue;
+            color: white;
+        }
+        .ninjaTime{
+            display: flex;
+            flex-direction: column;
+        }
+        label{
+            margin-top: 8px;
+        }
+        input{
+            margin-bottom: 8px;
+            color: black;
+        }
+        .maker{
+            margin-top: 69px;
+        }
+        .homesick{
+            margin-top: 69px;
+        }
+        select{
+            background-color: darkslateblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="addNinja">
+            <h1>New Ninja</h1>
+            <form class = "ninjaTime" action="add_ninja" method = "POST">
+                <label for=""></label>
+                <select name="dojo_id" id="">
+                    {% for dojo in all_dojos %}
+                        <option value="{{dojo.id}}">{{dojo.name}}</option>
+                    {% endfor %}
+                </select>
+                <label for="">First Name:</label>
+                <input type="text" name = "first_name">
+                <label for="">Last Name:</label>
+                <input type="text" name = "last_name">
+                <label for="">Age:</label>
+                <input type="text" name = "age">
+                <input class = "maker btn btn-primary" type="submit" value="Submit">
+            </form>
+            <a class = "homesick" href="/dojos">Home</a>
+        </div>
+    </div>
+</body>
+</html>
