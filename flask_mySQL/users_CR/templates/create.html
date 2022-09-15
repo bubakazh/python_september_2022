@@ -10,7 +10,12 @@
         .container{
             display: flex;
             justify-content: center;
-            flex-direction: column;
+            /* flex-direction: column; */
+        }
+        .main{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
         }
         .createUser{
             display: flex;
@@ -28,23 +33,31 @@
         .brrtn{
             margin-top: 32px;
         }
+        .ewan{
+            margin-left: 400px;
+            margin-top: 32px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="createUser">
-            <h1>Add a User</h1>
-            <form class = "formy" action="/create_user" method="POST">
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name">
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name">
-                <label for="email" >Email:</label>
-                <input type="text" name="email">
-                <label for="password" >Password:</label>
-                <input type="text" name="password">
-                <input class = "brrtn" type="submit" value="Create User">
-            </form>
-        </body>
+        <div class="main">
+            <div class="createUser">
+                <h1>Add a User</h1>
+                <form class = "formy" action="/create_user" method="POST">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name">
+                    <label for="email" >Email:</label>
+                    <input type="text" name="email">
+                    <label for="password" >Password:</label>
+                    <input type="text" name="password">
+                    <input class = "brrtn" type="submit" value="Create User">
+                </form>
+            </div>
+            <a class = "ewan" href="/">Home</a>
+        </div>
     </div>
+</body>
 </html>

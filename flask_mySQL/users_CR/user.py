@@ -10,7 +10,9 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+
     # Now we use class methods to query our database
+    # ! READ ALL
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM users;"
@@ -23,12 +25,34 @@ class User:
             users.append( cls(user) )
         return users
 
-    # ... other class methods
+    # ! READ ONE
+    @classmethod
+    def get_one(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s"
+        result = connectToMySQL('users').query_db(query, data)
+        print(result[0])
+        user = User(result[0])
+        return user
+
+    # other class methods
+
+    # ! CREATE
     # class method to save our user to the database
     @classmethod
     def save(cls, data ):
         query = "INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES ( %(first_name)s , %(last_name)s , %(email)s , %(password)s, NOW() , NOW() );"
         # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL('users').query_db( query, data )
+
+    @classmethod
+    def update(cls, data):
+        query = "UPDATE users SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, password = %(password)s, updated_at = NOW() WHERE id = %(id)s;"
+        connectToMySQL('users').query_db(query, data)
+
+    # ! DELETE
+    @classmethod
+    def destroy(cls, data):
+        query = "DELETE FROM users WHERE id = %(id)s"
         return connectToMySQL('users').query_db( query, data )
 
             
