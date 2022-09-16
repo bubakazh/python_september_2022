@@ -2,7 +2,7 @@
 from flask_app import DATABASE, flash
 from flask_app.config.mysqlconnection import connectToMySQL
 import re
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
     def __init__(self, data):

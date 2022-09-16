@@ -3,7 +3,6 @@ from flask_app import DATABASE
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models.ninja import Ninja
 
-# some of these classmethods might not be used
 
 class Dojo:
     def __init__(self, data):
@@ -15,7 +14,6 @@ class Dojo:
 
     @classmethod
     def create(cls, data):
-        # the variables in this query are examples, wont work as boilerplate
         query = "INSERT INTO dojos (name, created_at, updated_at) VALUES (%(name)s, NOW(), NOW());"
         return connectToMySQL(DATABASE).query_db(query, data)
 

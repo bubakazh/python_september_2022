@@ -5,8 +5,6 @@ from flask_app.models.dojo import Dojo
 from flask_app.models.ninja import Ninja
 
 
-# most likely some of these routes wont be used
-
 @app.route("/ninja")
 def ninja_new():
     dojos = Dojo.get_all()

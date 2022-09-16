@@ -2,7 +2,6 @@
 from flask_app import DATABASE
 from flask_app.config.mysqlconnection import connectToMySQL
 
-# some of these classmethods might not be used
 
 class Ninja:
     def __init__(self, data):
@@ -16,7 +15,6 @@ class Ninja:
 
     @classmethod
     def create(cls, data):
-        # the variables in this query are examples, wont work as boilerplate
         query = "INSERT INTO ninjas (first_name, last_name, age, created_at, updated_at, dojo_id) VALUES (%(first_name)s ,%(last_name)s, %(age)s, NOW() , NOW(), %(dojo_id)s);"
         return connectToMySQL(DATABASE).query_db(query, data)
 
