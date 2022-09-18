@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='bootstrap.css')}}">
+    <title>Welcome</title>
+    <style>
+        .container{
+            padding:  15px;
+            text-align: center;
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            text-align: left;
+        }
+        .card{
+            display: flex;
+            flex-direction: column;
+            margin: 0px 12px;
+            /* background-color: rgb(74, 64, 134); */
+            color: white;
+            padding: 10px 50px;
+            width: 50%;
+        }
+        #registration{
+            background: url(../static/img/Shokugeki_no_souma_go_no_sara.webp) left;
+            background-repeat: no-repeat;
+            position: relative;
+            left: 46px;
+        }
+        #login{
+            background: url(../static/img/Shokugeki_no_souma_go_no_sara.webp) right;
+            background-repeat: no-repeat;
+            position: relative;
+            right: 46px;
+        }
+        h1{
+            margin-bottom: 69px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        label{
+            margin-top: 10px;
+        }
+        .form-control{
+            color: black;
+            width: 92%;
+        }
+        .clicky{
+            width: 96px;
+            margin-top: 32px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RECIPES</h1>
+        <div class="main">
+            <div class="card" id = "registration">
+                <div class="card-header">
+                    <h1>Register</h1>
+                </div>
+                {% with messages = get_flashed_messages(with_categories = True) %}
+                <form action="/register" method = "POST">
+                    <div class="form-group">
+                        <label for="first_name">First name</label>
+                        <input type="text" class="form-control" id="first_name" name = "first_name" placeholder="Enter first name">
+                    </div>
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'first_name' %}
+                                <span class="form-text text-danger">{{message}}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="last_name">Last name</label>
+                        <input type="text" class="form-control" id="last_name" name = "last_name" placeholder="Enter last name">
+                    </div>
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'last_name' %}
+                                <span class="form-text text-danger">{{message}}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name = "email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'email' %}
+                                <span class="form-text text-danger">{{message}}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name = "password" placeholder="Enter password">
+                    </div>
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'password' %}
+                                <span class="form-text text-danger">{{message}}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="confirm">Confirm password</label>
+                        <input type="password" class="form-control" id="confirm" name = "confirm" placeholder="Confirm password">
+                    </div>
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'confirm' %}
+                                <span class="form-text text-danger">{{message}}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <input class = "clicky btn btn-danger" type="submit" value="Register">
+                </form>
+                {% endwith %}
+            </div>
+            <div class="card" id = "login">
+                <div class="card-header">
+                    <h1>Login</h1>
+                </div>
+                {% with messages = get_flashed_messages(with_categories = True) %}
+                <form action="/login" method = "POST">
+                    <div class="form-group">
+                        <label for="login_email">Email</label>
+                        <input type="email" class="form-control" id="login_email" name = "login_email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="login_password">Password</label>
+                        <input type="password" class="form-control" id="login_password" name = "login_password" aria-describedby="passwordHelp" placeholder="Enter password">
+                        <small id="passwordHelp" class="form-text text-muted">Never share your password with anyone else.</small>
+                    </div>
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'login_email' %}
+                                <span class="form-text text-danger">{{message}}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'login_password' %}
+                                <span class="form-text text-danger">{{message}}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <input class = "clicky btn btn-danger" type="submit" value="Login">
+                </form>
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

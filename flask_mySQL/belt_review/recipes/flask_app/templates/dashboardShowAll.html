@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bootstrap.css')}}">
+    <title>Dashboard</title>
+    <style>
+        .container{
+            padding: 15px;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .links a{
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome, {{session.first_name}}!</h1>
+            <div class="links">
+                <a class = "btn btn-primary" href="/newrecipe">Add Recipe</a>
+                <a class = "btn btn-danger" href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="main">
+            <table class="table">
+                <tr>
+                    <th>Recipe Name</th>
+                    <th>Under 30?</th>
+                    <th>Posted By</th>
+                    <th>Actions</th>
+                </tr>
+                {% for recipe in recipes %}
+                <tr>
+                    <th>{{recipe.name}}</th>
+                    <td>{{recipe.under_30}}</td>
+                    <td>{{recipe.first_name}}</td>
+                    <td> <a href="/show/">View</a> | 
+                         <a href="/edit/">Edit</a> | 
+                         <a href="/delete/">Delete</a> 
+                    </td>
+                </tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+    </div>
+</body>
+</html>
