@@ -1,6 +1,7 @@
 
 from flask_app import app, render_template, request, redirect, session, bcrypt, flash
 from flask_app.models.recipe import Recipe
+from flask_app.models.user import User
 
 # ! ADDING A RECIPE
 # * DISPLAY ROUTE
@@ -12,8 +13,8 @@ def newRecipe():
 @app.route("/addRecipe", methods=['post'])
 def addRecipe():
     print(request.form)
-    # if not Recipe.validate_recipe(request.form):
-    #     return redirect('/newrecipe')
+    if not Recipe.validate_recipe(request.form):
+        return redirect('/newrecipe')
     data = {
         'name' : request.form['name'],
         'description' : request.form['description'],
@@ -36,9 +37,12 @@ def dashboardShowAll():
 
 
 # ! SHOW ONE RECIPE
-@app.route("/recipe/<int:id>")
-def recipe_show(id):
-    return render_template('recipe_show.html')
+@app.route("/showrecipe/<int:id>")
+def showRecipe(id):
+    data = {'id' : id}
+    recipe = Recipe.get_one(data)
+    user = User.get_one({'id' : recipe.user_id})
+    return render_template('showOne.html', recipe = recipe)
 # ! END SHOW ONE
 
 
@@ -46,21 +50,25 @@ def recipe_show(id):
 # ! EDIT / UPDATE A RECIPE
 # * DISPALY ROUTE
 @app.route("/editrecipe/<int:id>")
-def recipe_edit(id):
-    return render_template('recipe_edit.html')
+def edit_recipe(id):
+    data = {'id' : id}
+    recipe = Recipe.get_one(data)
+    return render_template('editRecipe.html', recipe = recipe)
 
 # TODO HANDLE ROUTE
-@app.route("/updaterecipe/<int:id>", methods=['post'])
-def recipe_update(id):
+@app.route("/updaterecipe", methods=['post'])
+def update_recipe():
     if not Recipe.validate_recipe(request.form):
-        return redirect('/editrecipe')
+        return redirect(f"/editrecipe/{request.form['id']}")
+    Recipe.update(request.form)
     return redirect('/dashboardShowAll')
 # ! END EDIT/UPDATE
 
 
 
 # ! DELETE A RECIPE
-@app.route("/recipe/<int:id>/delete")
-def recipe_delete(id):
-    return redirect('/')
+@app.route("/deleterecipe/<int:id>")
+def delete_recipe(id):
+    Recipe.destroy({'id': id})
+    return redirect('/dashboardShowAll')
 # ! END DELETE

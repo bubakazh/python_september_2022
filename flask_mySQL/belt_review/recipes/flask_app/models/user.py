@@ -73,7 +73,7 @@ class User:
             return False
 
     @classmethod
-    def get_one_with_email(cls,data) -> object or bool:
+    def get_one_with_email(cls,data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
         result = connectToMySQL(DATABASE).query_db(query, data)
         print(result)

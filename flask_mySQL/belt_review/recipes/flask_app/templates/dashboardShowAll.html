@@ -23,6 +23,8 @@
 </head>
 <body>
     <div class="container">
+        <!-- {{session}}
+        {{recipes[-1].user_id}} -->
         <div class="header">
             <h1>Welcome, {{session.first_name}}!</h1>
             <div class="links">
@@ -43,9 +45,11 @@
                     <th>{{recipe.name}}</th>
                     <td>{{recipe.under_30}}</td>
                     <td>{{recipe.first_name}}</td>
-                    <td> <a href="/show/">View</a> | 
-                         <a href="/edit/">Edit</a> | 
-                         <a href="/delete/">Delete</a> 
+                    <td><a href="/showrecipe/{{recipe.id}}">View</a> | 
+                        {% if recipe.user_id == session.user_id %}
+                            <a href="/editrecipe/{{recipe.id}}">Edit</a> | 
+                            <a href="/deleterecipe/{{recipe.id}}">Delete</a> 
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}

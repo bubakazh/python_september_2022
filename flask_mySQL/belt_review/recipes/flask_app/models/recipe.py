@@ -12,6 +12,7 @@ class Recipe:
         self.instructions = data['instructions']
         self.date_made = data['date_made']
         self.under_30 = data['under_30']
+        self.user_id = data['user_id']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.first_name = data['first_name']
@@ -20,7 +21,19 @@ class Recipe:
     def validate_recipe(recipe):
         is_valid = True
         # test whether a field matches the pattern
-        if len(recipe['name']) < 1 or len(recipe['description']) < 1 or len(recipe['instructions']) < 1 or recipe['date_made'] != '' or 'under_30' not in recipe:
+        if len(recipe['name']) < 1:
+            flash("All fields are requied.")
+            is_valid = False
+        if len(recipe['description']) < 1:
+            flash("All fields are requied.")
+            is_valid = False
+        if len(recipe['instructions']) < 1:
+            flash("All fields are requied.")
+            is_valid = False
+        if recipe['date_made'] == '':
+            flash("All fields are requied.")
+            is_valid = False
+        if 'under_30' not in recipe:
             flash("All fields are requied.")
             is_valid = False
         return is_valid
@@ -32,9 +45,10 @@ class Recipe:
 
     @classmethod
     def get_one(cls, data):
-        query = "SELECT * FROM recipes WHERE id = %(id)s;"
-        results = connectToMySQL(DATABASE).query_db(query, data)
-        return cls(results[0])
+        query = "SELECT * FROM recipes LEFT JOIN users ON users.id = recipes.user_id WHERE recipes.id = %(id)s;"
+        result = connectToMySQL(DATABASE).query_db(query, data)
+        recipe = Recipe(result[0])
+        return recipe
 
     @classmethod
     def get_all(cls):
