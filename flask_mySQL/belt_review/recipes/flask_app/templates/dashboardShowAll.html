@@ -43,7 +43,14 @@
                 {% for recipe in recipes %}
                 <tr>
                     <th>{{recipe.name}}</th>
-                    <td>{{recipe.under_30}}</td>
+                    <td>
+                        {% if recipe.under_30 %}
+                            Yes
+                        {% endif %}
+                        {% if not recipe.under_30 %}
+                            No
+                        {% endif %}
+                    </td>
                     <td>{{recipe.first_name}}</td>
                     <td><a href="/showrecipe/{{recipe.id}}">View</a> | 
                         {% if recipe.user_id == session.user_id %}

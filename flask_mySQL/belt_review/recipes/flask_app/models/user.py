@@ -117,8 +117,8 @@ class User:
                 'instructions' : result['instructions'],
                 'date_cooked' : result['date_cooked'],
                 'under_30' : result['under_30'],
-                'created_at' : result['ninjas.created_at'],
-                'updated_at' : result['ninjas.updated_at'],
+                'created_at' : result['recipe.created_at'],
+                'updated_at' : result['recipe.updated_at'],
                 'user_id' : result['user_id']
             }
             user.recipes.append(Recipe(recipe_copy))
